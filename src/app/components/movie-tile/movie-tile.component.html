@@ -1,0 +1,20 @@
+<div class="flex mb-4 bg-gray-50/50 border">
+  <div class="border-3 border-gray-500">
+    @if (movie.Poster === "N/A" || movie.Poster == undefined) {
+    <img
+      class="w-[200px] max-w-[200px] h-[220px] object-cover"
+      src="images/image-not-available.png"
+    />
+    } @else {
+    <img
+      class="w-[200px] max-w-[200px] h-[220px] object-cover"
+      [src]="movie.Poster"
+    />
+    }
+  </div>
+  <div class="px-2 py-3">
+    <p class="text-4xl">{{ movie.Title }}</p>
+    <p>Type: {{ movie.Type }}</p>
+    <p>Released year: {{ movie.Year }}</p>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+@if(movie){
+<div class="p-5">
+  <!-- Navbar -->
+  <div class="flex flex-col md:flex-row justify-between mb-4 md:mb-16">
+    <div class="mb-4 md:mb-0">
+      <div class="text-4xl font-semibold">{{ movie.Title }}</div>
+      <div class="flex gap-2">
+        <p class="text-sm">
+          {{ movie.Year }} | {{ movie.Rated }} | {{ movie.Runtime }}
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        class="flex items-start gap-6 flex-1 justify-between md:justify-start"
+      >
+        <div class="text-sm">
+          <div class="items-center flex flex-col">
+            <div>IMDb RATING</div>
+            <div>{{ movie.imdbRating }}/10</div>
+          </div>
+        </div>
+        <div
+          (click)="handleOnClickBookmark()"
+          class="cursor-pointer flex border border-gray-800 p-2 rounded-lg gap-2 items-center"
+        >
+          @if(!isBookMarked){
+          <p>Bookmark</p>
+          }
+
+          <div class="">
+            @if (isBookMarked) {
+            <img class="w-[18px]" src="icons/bookmark-filled.png" />
+            } @else {
+            <img class="w-[18px]" src="icons/bookmark.png" />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Navbar ENDS -->
+  <!-- MAIN SECTION -->
+  <div>
+    <div class="flex flex-col md:flex-row">
+      <div
+        class="flex items-center justify-center md:items-start md:justify-start"
+      >
+        @if (movie.Poster === "N/A" || movie.Poster == undefined) {
+        <img
+          class="min-w-[300px] w-[300px] object-cover"
+          src="images/image-not-available.png"
+        />
+        } @else {
+        <img
+          class="min-w-[300px] w-[300px] object-cover"
+          [src]="movie.Poster"
+        />
+        }
+      </div>
+      <div class="pl-0 pt-4 md:pt-0 md:px-2 md:pl-5 font-semibold">
+        <div class="flex flex-col gap-2 font-normal">
+          <div>
+            <p>
+              {{ movie.Plot }}
+            </p>
+            <div class="w-full h-[1px] bg-gray-300 mt-2"></div>
+          </div>
+          <app-detail-row title="Director" [description]="movie.Director" />
+          <app-detail-row title="Writer" [description]="movie.Writer" />
+          <app-detail-row title="Stars" [description]="movie.Actors" />
+          <app-detail-row title="Language" [description]="movie.Language" />
+          <app-detail-row
+            title="Genre"
+            [description]="movie.Genre"
+            [hasDivider]="false"
+          />
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </div>
+</div>
+}

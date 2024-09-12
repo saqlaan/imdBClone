@@ -1,0 +1,16 @@
+<div class="pt-10 px-4 md:px-0">
+  @if (bookmarkMovies.length> 0) {
+  <h2 class="mb-4">
+    Movies added to the watchlist ({{ bookmarkMovies.length }})
+  </h2>
+  <div class="flex flex-1 flex-wrap">
+    @for (movie of bookmarkMovies; track movie.imdbID) {
+    <app-bookmarked-tile [movie]="movie" />
+    }
+  </div>
+  } @else {
+  <div class="flex flex-1 justify-center">
+    <h2 class="mb-4">There are no movies in the watchlist</h2>
+  </div>
+  }
+</div>
